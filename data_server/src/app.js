@@ -11,6 +11,18 @@ app.get("/", (req, res) => {
     res.send("Test!")
 })
 
+app.get("/data", (req, res) =>{
+    fs.readFile(__dirname + "/../data/lhc" + ".csv", 'utf8' , (err, data) => 
+    {
+        if (err) {
+            res.sendStatus(404)
+            return
+        }
+        res.send(data)
+        return
+    })
+})
+
 app.get("/get-batch/:batch_id", (req, res) =>{
     fs.readFile(__dirname + "/../data/" + req.params.batch_id + ".csv", 'utf8' , (err, data) => 
     {
